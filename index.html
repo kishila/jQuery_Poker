@@ -9,21 +9,42 @@
 <table width="1000" border="0" align="center">
   <tr>
       <td class="normal_card">
-          <img src="./CardImage/00.gif">
+          <img id="card1" src="./CardImage/00.gif">
       </td>
       <td class="normal_card">
-          <img src="./CardImage/00.gif">
+          <img id="card2" src="./CardImage/00.gif">
       </td>
       <td class="normal_card">
-          <img src="./CardImage/00.gif">
+          <img id="card3" src="./CardImage/00.gif">
       </td>
       <td class="normal_card">
-          <img src="./CardImage/00.gif">
+          <img id="card4" src="./CardImage/00.gif">
       </td>
       <td class="normal_card">
-          <img src="./CardImage/00.gif">
+          <img id="card5" src="./CardImage/00.gif">
       </td>
   </tr>
+
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+      $(function() {
+          $("#card1").attr("src","./CardImage/" + num_rand() + ".gif");
+          $("#card2").attr("src","./CardImage/" + num_rand() + ".gif");
+          $("#card3").attr("src","./CardImage/" + num_rand() + ".gif");
+          $("#card4").attr("src","./CardImage/" + num_rand() + ".gif");
+          $("#card5").attr("src","./CardImage/" + num_rand() + ".gif");
+
+          function num_rand() {
+              var val = Math.round( Math.random()*51 );
+              if (val  < 10) {
+                  str = "0" + val.toString();
+              } else {
+                str = val.toString();
+              }
+              return str;
+          }
+      });
+  </script>
 </table>
 </body>
 </html>
