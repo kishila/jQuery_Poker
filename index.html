@@ -4,71 +4,89 @@
     <meta charset="utf-8">
     <title>ポーカー</title>
     <link rel="stylesheet" type="text/css" href="./css/card_state.css">
+    <link rel="stylesheet" type="text/css" href="./css/star_state.css">
 </head>
 <body>
 <table width="1000" border="0" align="center">
-  <tr>
-      <td class="normal_card">
-          <img id="card0" src="./CardImage/00.gif">
-      </td>
-      <td class="normal_card">
-          <img id="card1" src="./CardImage/00.gif">
-      </td>
-      <td class="normal_card">
-          <img id="card2" src="./CardImage/00.gif">
-      </td>
-      <td class="normal_card">
-          <img id="card3" src="./CardImage/00.gif">
-      </td>
-      <td class="normal_card">
-          <img id="card4" src="./CardImage/00.gif">
-      </td>
-  </tr>
+    <tr>
+        <td class="visible_star">
+            <img src="./img/star.png">
+        </td>
+        <td class="visible_star">
+            <img src="./img/star.png">
+        </td>
+        <td class="visible_star">
+            <img src="./img/star.png">
+        </td>
+        <td class="visible_star">
+            <img src="./img/star.png">
+        </td>
+        <td class="visible_star">
+            <img src="./img/star.png">
+        </td>
+    </tr>
+    <tr>
+        <td class="normal_card">
+            <img id="card0" src="./CardImage/00.gif">
+        </td>
+        <td class="normal_card">
+            <img id="card1" src="./CardImage/00.gif">
+        </td>
+        <td class="normal_card">
+            <img id="card2" src="./CardImage/00.gif">
+        </td>
+        <td class="normal_card">
+            <img id="card3" src="./CardImage/00.gif">
+        </td>
+        <td class="normal_card">
+            <img id="card4" src="./CardImage/00.gif">
+        </td>
+    </tr>
 </table>
 <button id="shuffle">シャッフル</button>
 
 <script src="./js/jquery-1.11.3.min.js"></script>
 <script>
-    $("#shuffle").click(function() {
-        card_init();
+  $("#shuffle").click(function() {
+    card_init();
 
-        function card_init() {
-          var num = ["","","","",""];
-          var newly_flag;
+    function card_init() {
+      var num = ["","","","",""];
+      var newly_flag;
 
-          for(i = 0; i < 5;i++) {
-            do {
-              num[i] = num_rand()
-              newly_flag = new_num_check(num, i);
-            } while(!newly_flag);
-          }
-          // カードの初期化
-          for(i = 0;i < 5;i++){
-            $("#card" + i).attr("src","./CardImage/" + num[i] + ".gif");
-          }
+      for(i = 0; i < 5;i++) {
+        do {
+          num[i] = num_rand()
+          newly_flag = new_num_check(num, i);
+        } while(!newly_flag);
+      }
+      // カードの初期化
+      for(i = 0;i < 5;i++){
+        $("#card" + i).attr("src","./CardImage/" + num[i] + ".gif");
+      }
+    }
+
+    //-- 0～51の乱数を生成
+    function num_rand() {
+      var val = Math.round( Math.random()*51 );
+      if (val  < 10) {
+        str = "0" + val.toString();
+      } else {
+        str = val.toString();
+      }
+      return str;
+    }
+
+    //-- 被っていない数字か判断
+    function new_num_check(num, i) {
+      for(j=i-1;j>=0;j--){
+        if(num[i] == num[j]) {
+          return false;
         }
-
-        //-- 0～51の乱数を生成
-        function num_rand() {
-          var val = Math.round( Math.random()*51 );
-          if (val  < 10) {
-            str = "0" + val.toString();
-          } else {
-            str = val.toString();
-          }
-          return str;
-        }
-
-        //-- 被っていない数字か判断
-        function new_num_check(num, i) {
-          for(j=i-1;j>=0;j--){
-            if(num[i] == num[j]) {
-              return false;
-            }
-          }
-          return true;
-        }
-    });
+      }
+      return true;
+    }
+  });
 </script>
 </body>
 </html>
