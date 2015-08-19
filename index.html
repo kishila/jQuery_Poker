@@ -30,36 +30,25 @@
 <script src="./js/jquery-1.11.3.min.js"></script>
 <script>
     $("#shuffle").click(function() {
-        num_init();
+        card_init();
 
-        function num_init() {
+        function card_init() {
           var num = ["","","","",""];
           var newly_flag;
 
           for(i = 0; i < 5;i++) {
             do {
-              newly_flag = true;
               num[i] = num_rand()
-
-              for(j=i-1;j>=0;j--){
-                if(num[i] == num[j]) {
-                  newly_flag = false;
-                }
-              }
+              newly_flag = new_num_check(num, i);
             } while(!newly_flag);
           }
           // カードの初期化
           for(i = 0;i < 5;i++){
             $("#card" + i).attr("src","./CardImage/" + num[i] + ".gif");
           }
-
-          /* // ログに表示
-          for(i = 0; i < num.length; i++) {
-            console.log(num[i]);
-          }
-          */
         }
 
+        //-- 0～51の乱数を生成
         function num_rand() {
           var val = Math.round( Math.random()*51 );
           if (val  < 10) {
@@ -68,6 +57,16 @@
             str = val.toString();
           }
           return str;
+        }
+
+        //-- 被っていない数字か判断
+        function new_num_check(num, i) {
+          for(j=i-1;j>=0;j--){
+            if(num[i] == num[j]) {
+              return false;
+            }
+          }
+          return true;
         }
     });
 </script>
