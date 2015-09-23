@@ -1,7 +1,12 @@
+//--- ページ読み込み時に実行したい処理
+$(document).ready( function(){
+
+});
 
 //--- 開始ボタンが押されたときの処理
 $("#start").click(function() {
-  card_init();
+  card_init();         // カードの初期化
+  available_overlay(); // オーバーレイ開始
 
   //--カードの初期化
   function card_init() {
@@ -41,4 +46,17 @@ $("#start").click(function() {
     }
     return true;
   }
+
+  //-- オーバーレイ化
+  function available_overlay() {
+    $('.overlay').colorOverlay({
+        bgColor : '#000000',
+        opacity : 0.3
+    });
+  }
+});
+
+//--- 「交換」ボタンが押されたとき
+$('#change').click(function() {
+
 });
