@@ -7,7 +7,6 @@ $(document).ready( function(){
 //--- 開始ボタンが押されたときの処理
 $("#start").click(function() {
   card_init();            // カードの初期化
-  available_overlay();    // オーバーレイ開始
   button_visualization(); // ボタンの可視化
 
   //--カードの初期化
@@ -47,14 +46,6 @@ $("#start").click(function() {
       }
     }
     return true;
-  }
-
-  //-- オーバーレイ化
-  function available_overlay() {
-    $('.overlay').colorOverlay({
-        bgColor : '#000000',
-        opacity : 0.3
-    });
   }
 
   //-- ボタン表示処理
