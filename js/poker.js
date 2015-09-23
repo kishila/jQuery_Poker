@@ -1,12 +1,14 @@
 //--- ページ読み込み時に実行したい処理
 $(document).ready( function(){
-
+  $("#change").hide();
+  $("#restart").hide();
 });
 
 //--- 開始ボタンが押されたときの処理
 $("#start").click(function() {
-  card_init();         // カードの初期化
-  available_overlay(); // オーバーレイ開始
+  card_init();            // カードの初期化
+  available_overlay();    // オーバーレイ開始
+  button_visualization(); // ボタンの可視化
 
   //--カードの初期化
   function card_init() {
@@ -54,9 +56,22 @@ $("#start").click(function() {
         opacity : 0.3
     });
   }
+
+  //-- ボタン表示処理
+  function button_visualization() {
+    $("#start").hide();
+    $("#change").show()
+  }
 });
 
 //--- 「交換」ボタンが押されたとき
 $('#change').click(function() {
+  $("#change").hide();
+  $("#restart").show()
+});
 
+//--- 「再戦」ボタンが押されたとき
+$('#restart').click(function() {
+  $("#restart").hide();
+  $("#start").show();
 });
