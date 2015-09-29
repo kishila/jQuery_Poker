@@ -1,33 +1,35 @@
-//--- ƒy[ƒW“Ç‚İ‚İ‚ÉÀs‚µ‚½‚¢ˆ—
+//----å¤§åŸŸå¤‰æ•°----------------
+var num = ["","","","",""];
+
+//--- ãƒšãƒ¼ã‚¸èª­ã¿è¾¼ã¿æ™‚ã«å®Ÿè¡Œã—ãŸã„å‡¦ç†
 $(document).ready( function(){
   $("#change").hide();
   $("#restart").hide();
 });
 
-//--- ŠJnƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+//--- é–‹å§‹ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
 $("#start").click(function() {
-  card_init();            // ƒJ[ƒh‚Ì‰Šú‰»
-  button_visualization(); // ƒ{ƒ^ƒ“‚Ì‰Â‹‰»
+  card_init();            // ã‚«ãƒ¼ãƒ‰ã®åˆæœŸåŒ–
+  button_visualization(); // ãƒœã‚¿ãƒ³ã®å¯è¦–åŒ–
 
-  //--ƒJ[ƒh‚Ì‰Šú‰»
+  //--ã‚«ãƒ¼ãƒ‰ã®åˆæœŸåŒ–
   function card_init() {
-    var num = ["","","","",""];
     var newly_flag;
 
-    // ƒJ[ƒh‚Ì”š‚ğŒˆ’è
+    // ã‚«ãƒ¼ãƒ‰ã®æ•°å­—ã‚’æ±ºå®š
     for(i = 0; i < 5;i++) {
       do {
         num[i] = num_rand()
         newly_flag = new_num_check(num, i);
       } while(!newly_flag);
     }
-    // ƒJ[ƒh‚Ì‰Šú‰»
+    // ã‚«ãƒ¼ãƒ‰ã®å¤‰æ›´
     for(i = 0;i < 5;i++){
       $("#card" + i).attr("src","./CardImage/" + num[i] + ".gif");
     }
   }
 
-  //-- 0`51‚Ì—”‚ğ¶¬
+  //-- 0ï½51ã®ä¹±æ•°ã‚’ç”Ÿæˆ
   function num_rand() {
     var val = Math.round( Math.random()*51 );
     if (val  < 10) {
@@ -38,7 +40,7 @@ $("#start").click(function() {
     return str;
   }
 
-  //-- ”í‚Á‚Ä‚¢‚È‚¢”š‚©”»’f
+  //-- è¢«ã£ã¦ã„ãªã„æ•°å­—ã‹åˆ¤æ–­
   function new_num_check(num, i) {
     for(j=i-1;j>=0;j--){
       if(num[i] == num[j]) {
@@ -48,21 +50,32 @@ $("#start").click(function() {
     return true;
   }
 
-  //-- ƒ{ƒ^ƒ“•\¦ˆ—
+  //-- ãƒœã‚¿ãƒ³è¡¨ç¤ºå‡¦ç†
   function button_visualization() {
     $("#start").hide();
     $("#change").show()
   }
 });
 
-//--- uŒğŠ·vƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+//--- ã€Œäº¤æ›ã€ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ã
 $('#change').click(function() {
   $("#change").hide();
   $("#restart").show()
 });
 
-//--- uÄívƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+//--- ã€Œå†æˆ¦ã€ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ã
 $('#restart').click(function() {
   $("#restart").hide();
   $("#start").show();
+  card_back();
+  //data_init();
+
+  //-- ã‚«ãƒ¼ãƒ‰ã‚’è£è¿”ã—ã«
+  function card_back() {
+    for(i = 0;i < 5;i++){
+      $("#card" + i).attr("src","./CardImage/card.gif");
+    }
+  }
+
+  //--
 });
