@@ -1,0 +1,1 @@
+document.write('<script type="text/javascript" src="./js/img-change.js"></script>'); // ‰æ‘œ‚Ì•ÏX
