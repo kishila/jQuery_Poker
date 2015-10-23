@@ -15,6 +15,7 @@ $("#start").click(function() {
   button_visualization(); // ボタンの可視化
   card_class_change();    // カードを操作対象に
   add_hover_fanc();       // 操作対象にオンマウス機能を追加
+  add_click_fanc();       // 操作対象にクリック時の機能を追加
 
   //--カードの初期化
   function card_init() {
@@ -71,10 +72,26 @@ $("#start").click(function() {
   function add_hover_fanc() {
     $('.operational').on({
       'mouseenter':function(){ // マウスが重なったときの処理
-          $(this).fadeTo(500,0.5);
+          $(this).fadeTo(0,0.5);
       },
       'mouseleave':function(){ // マウスが外れた時の処理
-      $(this).fadeTo(500,1);
+      $(this).fadeTo(0,1);
+      }
+    });
+  }
+
+  //-- 操作対象にクリック時の機能を追加
+  function add_click_fanc() {
+    $('.operational').on({
+      'click':function() {
+        var position = $(this).position();
+        if($(this).hasClass('selected')){  // 外すとき
+          $(this).removeClass("selected");
+          $(this).animate({'top':'+=50px'}, "fast");
+        } else {                           // 選ぶとき
+          $(this).addClass("selected");
+          $(this).animate({'top':'-=50px'}, "fast");
+        }
       }
     });
   }
@@ -89,16 +106,18 @@ $('#change').click(function() {
   remove_hover_fanc();       // 操作対象にオンマウス機能を追加
   card_class_change();
 
+  //-- 操作対象からオンマウス機能を削除
+  function remove_hover_fanc() {
+    $('.operational').off("mouseenter");
+    $('.operational').off("mouseleave");
+    $('.operational').off("click");
+  }
+
   //-- カードからクラスを削除
   function card_class_change() {
     for(i = 0;i < 5;i++){
       $("#card" + i).removeClass("operational");
     }
-  }
-
-  function remove_hover_fanc() {
-    $('.operational').off("mouseenter");
-    $('.operational').off("mouseleave");
   }
 });
 
