@@ -73,9 +73,11 @@ $("#start").click(function() {
     $('.operational').on({
       'mouseenter':function(){ // マウスが重なったときの処理
           $(this).fadeTo(0,0.5);
+          $(this).css("cursor","pointer"); //---カーソルを指に
       },
       'mouseleave':function(){ // マウスが外れた時の処理
       $(this).fadeTo(0,1);
+      $(this).css("cursor","default"); //---カーソルを戻す
       }
     });
   }
